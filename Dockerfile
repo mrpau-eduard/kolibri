@@ -14,6 +14,7 @@ RUN apt-get -y update
 RUN apt-get install -y python2.7 python3.6 python-pip git nodejs yarn gettext python-sphinx
 COPY . /kolibri
 
-VOLUME /kolibridist/  # for mounting the whl files into other docker containers
+# for mounting the whl files into other docker containers
+VOLUME /kolibridist/  
 CMD cd /kolibri && pip install -r requirements/dev.txt && pip install -r requirements/build.txt && yarn install && make dist && cp /kolibri/dist/* /kolibridist/
 
